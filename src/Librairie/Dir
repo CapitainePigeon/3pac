@@ -1,0 +1,5 @@
+package Librairie;
+
+public enum Dir {
+    bas,haut,gauche,droite;
+}

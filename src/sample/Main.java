@@ -18,6 +18,10 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+        Jeu j=new Jeu();
+        Console c =new Console(j);
+        j.addObserver(c);
+        new Thread(j).start();
         launch(args);
     }
 }
