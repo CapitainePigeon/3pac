@@ -4,4 +4,7 @@ public abstract class Entite {
     boolean deplacer(Dir dir){
         return false;
     }
+    public String toString(){
+        return " ";
+    }
 }
