@@ -1,5 +1,8 @@
 package sample;
 
+import Librairie.Cases.Case;
+import Librairie.Entites.Entite;
+
 import java.util.Observable;
 import java.util.Observer;
 
@@ -12,10 +15,10 @@ public class Console implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        boolean[][] tab=j.getState();
+        Case[][] tab=j.getState();
         for(int i=0;i<tab.length;i++){
             for(int k=0;k<tab[i].length;k++){
-                System.out.print(tab[i][k]+"  ");
+                System.out.print("|"+tab[i][k]);
             }
             System.out.println();
         }
