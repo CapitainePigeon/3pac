@@ -1,8 +1,6 @@
 package sample;
 
-import Librairie.Cases.*;
-import Librairie.Entites.*;
-import Librairie.Entites.Fantominus;
+import Librairie.Case;
 
 
 import java.util.Observable;
@@ -14,7 +12,7 @@ public class Jeu extends Observable implements Runnable
         tab = new Case[31][28];
         for(int i=0;i<tab.length;i++){
             for(int k=0;k<tab[i].length;k++){
-                tab[i][k]=new Mur();
+                tab[i][k]=new Case(false);
             }
         }
 
@@ -24,37 +22,37 @@ public class Jeu extends Observable implements Runnable
                 if(ligne!=14)
                     setPacGomme(ligne,i);
                 else
-                    tab[ligne][i] = new Couloir();
+                    tab[ligne][i] = new Case();
             }
         }
-        tab[1][13]=new Mur();
-        tab[1][14]=new Mur();
+        tab[1][13]=new Case(false);
+        tab[1][14]=new Case(false);
 
 
-        tab[8][13]=new Mur();
-        tab[8][14]=new Mur();
-        tab[8][7]=new Mur();
-        tab[8][8]=new Mur();
-        tab[8][20]=new Mur();
-        tab[8][21]=new Mur();
+        tab[8][13]=new Case(false);
+        tab[8][14]=new Case(false);
+        tab[8][7]=new Case(false);
+        tab[8][8]=new Case(false);
+        tab[8][20]=new Case(false);
+        tab[8][21]=new Case(false);
 
         for (int i = 9; i < 18; i++) {
-            tab[14][i] = new Mur();
+            tab[14][i] = new Case(false);
         }
-        tab[20][13]=new Mur();
-        tab[20][14]=new Mur();
+        tab[20][13]=new Case(false);
+        tab[20][14]=new Case(false);
 
-        tab[23][23]=new Mur();
-        tab[23][22]=new Mur();
-        tab[23][4]=new Mur();
-        tab[23][5]=new Mur();
+        tab[23][23]=new Case(false);
+        tab[23][22]=new Case(false);
+        tab[23][4]=new Case(false);
+        tab[23][5]=new Case(false);
 
-        tab[26][13]=new Mur();
-        tab[26][14]=new Mur();
-        tab[26][20]=new Mur();
-        tab[26][19]=new Mur();
-        tab[26][7]=new Mur();
-        tab[26][8]=new Mur();
+        tab[26][13]=new Case(false);
+        tab[26][14]=new Case(false);
+        tab[26][20]=new Case(false);
+        tab[26][19]=new Case(false);
+        tab[26][7]=new Case(false);
+        tab[26][8]=new Case(false);
 
 
 
@@ -73,17 +71,17 @@ public class Jeu extends Observable implements Runnable
         setPacGomme(6,19);
         setPacGomme(7,19);
 
-        tab[9][12]=new Couloir();
-        tab[10][12]=new Couloir();
-        tab[9][15]=new Couloir();
-        tab[10][15]=new Couloir();
+        tab[9][12]=new Case();
+        tab[10][12]=new Case();
+        tab[9][15]=new Case();
+        tab[10][15]=new Case();
 
 
         for (int i = 9; i < 19; i++) {
-            tab[11][i] = new Couloir();
-            tab[17][i] = new Couloir();
-            tab[i+2][9] = new Couloir();
-            tab[i+2][18] = new Couloir();
+            tab[11][i] = new Case();
+            tab[17][i] = new Case();
+            tab[i+2][9] = new Case();
+            tab[i+2][18] = new Case();
         }
 
 
@@ -94,7 +92,7 @@ public class Jeu extends Observable implements Runnable
 
         for(int ligne = 3; ligne < 5; ligne++) {
             for (int i = 0; i < 27; i++) {
-                if (tab[2][i] instanceof Couloir)
+                if (tab[2][i] instanceof Case)
                     setPacGomme(ligne,i);
             }
         }
@@ -133,16 +131,16 @@ public class Jeu extends Observable implements Runnable
 
 
 
-       // ((Couloir)tab[1][3]).add(new Fantominus());
+       // ((Case)tab[1][3]).add(new Fantominus());
     }
 
     public void setPacGomme(int ligne, int colone){
-        Couloir c=new Couloir();
+        Case c=new Case();
         tab[ligne][colone]= c;
         c.setPacGomme();
     }
     public void setSuperPacGomme(int ligne, int colone){
-        Couloir c=new Couloir();
+        Case c=new Case();
         tab[ligne][colone]= c;
         c.setSuperPacGomme();
     }

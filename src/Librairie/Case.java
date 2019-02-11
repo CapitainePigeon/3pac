@@ -1,17 +1,27 @@
-package Librairie.Cases;
+package Librairie;
 
 import Librairie.Entites.*;
 
 import java.util.ArrayList;
 
-public class Couloir extends Case {
+public class Case {
+    boolean isMur=false;
     ArrayList<Entite> contenu=new ArrayList<Entite>();
 
-    public Couloir(ArrayList<Entite> contenu) {
+    public Case(ArrayList<Entite> contenu) {
         this.contenu = contenu;
     }
 
-    public Couloir() {
+    public Case(boolean isMur, ArrayList<Entite> contenu) {
+        this.isMur = isMur;
+        this.contenu = contenu;
+    }
+
+    public Case() {
+    }
+
+    public Case(boolean isMur) {
+        this.isMur = isMur;
     }
 
     public void add(Entite contenu){
@@ -29,6 +39,8 @@ public class Couloir extends Case {
     }
 
     public String toString(){
+        if (isMur)
+            return "#";
         if(contenu.size()!=0)
             return contenu.get(contenu.size()-1).toString();
         return " ";

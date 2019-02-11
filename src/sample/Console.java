@@ -1,7 +1,6 @@
 package sample;
 
-import Librairie.Cases.Case;
-import Librairie.Entites.Entite;
+import Librairie.Case;
 
 import java.util.Observable;
 import java.util.Observer;
