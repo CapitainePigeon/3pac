@@ -1,6 +1,7 @@
 package sample;
 
-import librairie.Case;
+import metier.jeuPacMan.Jeu;
+import metier.librairie.Case;
 
 import java.util.Observable;
 import java.util.Observer;

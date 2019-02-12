@@ -1,4 +1,6 @@
-package librairie;
+package metier.librairie;
+
+import metier.librairie.Case;
 
 public class Grille {
     private Case[][] tab;

@@ -1,15 +1,15 @@
-package librairie.entites;
+package metier.jeuPacMan;
 
+import metier.librairie.Grille;
+import metier.librairie.Entite;
 
-import librairie.Grille;
-
-public class Fantominus extends Entite implements Runnable {
+public class PacMan extends Entite implements Runnable{
     public String toString(){
-        return "M";
+        return "O";
     }
     protected Grille grille;
 
-    public Fantominus(Grille grille) {
+    public PacMan(Grille grille) {
         this.grille = grille;
     }
 

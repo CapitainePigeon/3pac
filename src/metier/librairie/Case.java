@@ -1,6 +1,7 @@
-package librairie;
+package metier.librairie;
 
-import librairie.entites.*;
+import metier.jeuPacMan.*;
+import metier.librairie.Entite;
 
 import java.util.ArrayList;
 
@@ -9,11 +10,6 @@ public class Case {
     ArrayList<Entite> contenu=new ArrayList<Entite>();
 
     public Case(ArrayList<Entite> contenu) {
-        this.contenu = contenu;
-    }
-
-    public Case(boolean isMur, ArrayList<Entite> contenu) {
-        this.isMur = isMur;
         this.contenu = contenu;
     }
 

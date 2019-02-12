@@ -1,4 +1,4 @@
-package librairie.entites;
+package metier.librairie;
 
 
 import java.util.Observable;

@@ -1,7 +1,7 @@
-package sample;
+package metier.jeuPacMan;
 
-import librairie.Case;
-import librairie.Grille;
+import metier.librairie.Case;
+import metier.librairie.Grille;
 
 
 import java.util.Observable;
