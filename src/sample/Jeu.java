@@ -1,18 +1,21 @@
 package sample;
 
-import Librairie.Case;
+import librairie.Case;
+import librairie.Grille;
 
 
 import java.util.Observable;
+import java.util.Observer;
 
-public class Jeu extends Observable implements Runnable
+public class Jeu extends Observable implements Runnable, Observer
 {
-    Case[][] tab;
+    Grille grille;
     public Jeu() {
-        tab = new Case[31][28];
-        for(int i=0;i<tab.length;i++){
-            for(int k=0;k<tab[i].length;k++){
-                tab[i][k]=new Case(false);
+
+        grille =new Grille(31,28);
+        for(int i=0;i<grille.getTab().length;i++){
+            for(int k=0;k<grille.getTab()[i].length;k++){
+                grille.setTab(new Case(true),i,k);
             }
         }
 
@@ -22,37 +25,37 @@ public class Jeu extends Observable implements Runnable
                 if(ligne!=14)
                     setPacGomme(ligne,i);
                 else
-                    tab[ligne][i] = new Case();
+                    grille.setTab(new Case(),ligne,i);
             }
         }
-        tab[1][13]=new Case(false);
-        tab[1][14]=new Case(false);
+        grille.setTab(new Case(true),1,13);
+        grille.setTab(new Case(true),1,14);
 
 
-        tab[8][13]=new Case(false);
-        tab[8][14]=new Case(false);
-        tab[8][7]=new Case(false);
-        tab[8][8]=new Case(false);
-        tab[8][20]=new Case(false);
-        tab[8][21]=new Case(false);
+        grille.setTab(new Case(true),8,13);
+        grille.setTab(new Case(true),8,14);
+        grille.setTab(new Case(true),8,7);
+        grille.setTab(new Case(true),8,8);
+        grille.setTab(new Case(true),8,20);
+        grille.setTab(new Case(true),8,21);
 
         for (int i = 9; i < 18; i++) {
-            tab[14][i] = new Case(false);
+            grille.setTab(new Case(true),14,i);
         }
-        tab[20][13]=new Case(false);
-        tab[20][14]=new Case(false);
+        grille.setTab(new Case(true),20,13);
+        grille.setTab(new Case(true),20,14);
 
-        tab[23][23]=new Case(false);
-        tab[23][22]=new Case(false);
-        tab[23][4]=new Case(false);
-        tab[23][5]=new Case(false);
+        grille.setTab(new Case(true),23,23);
+        grille.setTab(new Case(true),23,22);
+        grille.setTab(new Case(true),23,4);
+        grille.setTab(new Case(true),23,5);
 
-        tab[26][13]=new Case(false);
-        tab[26][14]=new Case(false);
-        tab[26][20]=new Case(false);
-        tab[26][19]=new Case(false);
-        tab[26][7]=new Case(false);
-        tab[26][8]=new Case(false);
+        grille.setTab(new Case(true),26,13);
+        grille.setTab(new Case(true),26,14);
+        grille.setTab(new Case(true),26,20);
+        grille.setTab(new Case(true),26,19);
+        grille.setTab(new Case(true),26,7);
+        grille.setTab(new Case(true),26,8);
 
 
 
@@ -71,17 +74,17 @@ public class Jeu extends Observable implements Runnable
         setPacGomme(6,19);
         setPacGomme(7,19);
 
-        tab[9][12]=new Case();
-        tab[10][12]=new Case();
-        tab[9][15]=new Case();
-        tab[10][15]=new Case();
+        grille.setTab(new Case(),9,12);
+        grille.setTab(new Case(),10,12);
+        grille.setTab(new Case(),9,15);
+        grille.setTab(new Case(),10,15);
 
 
         for (int i = 9; i < 19; i++) {
-            tab[11][i] = new Case();
-            tab[17][i] = new Case();
-            tab[i+2][9] = new Case();
-            tab[i+2][18] = new Case();
+            grille.setTab(new Case(),11,i);
+            grille.setTab(new Case(),17,i);
+            grille.setTab(new Case(),i+2,9);
+            grille.setTab(new Case(),i+2,18);
         }
 
 
@@ -92,7 +95,7 @@ public class Jeu extends Observable implements Runnable
 
         for(int ligne = 3; ligne < 5; ligne++) {
             for (int i = 0; i < 27; i++) {
-                if (tab[2][i] instanceof Case)
+                if (!grille.getTab(2,i).isWall())
                     setPacGomme(ligne,i);
             }
         }
@@ -136,12 +139,12 @@ public class Jeu extends Observable implements Runnable
 
     public void setPacGomme(int ligne, int colone){
         Case c=new Case();
-        tab[ligne][colone]= c;
+        grille.setTab(c,ligne,colone);
         c.setPacGomme();
     }
     public void setSuperPacGomme(int ligne, int colone){
         Case c=new Case();
-        tab[ligne][colone]= c;
+        grille.setTab(c,ligne,colone);
         c.setSuperPacGomme();
     }
     @Override
@@ -158,6 +161,12 @@ public class Jeu extends Observable implements Runnable
     }
     public Case[][] getState(){
 
-        return tab;
+        return grille.getTab();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        setChanged();
+        notifyObservers();
     }
 }

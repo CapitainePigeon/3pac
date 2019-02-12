@@ -1,4 +1,4 @@
-package Librairie.Entites;
+package librairie.entites;
 
 public class PacGomme extends Entite{
 

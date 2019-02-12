@@ -1,8 +1,9 @@
-package Librairie.Entites;
+package librairie.entites;
 
 
+import java.util.Observable;
 
-public abstract class Entite {
+public abstract class Entite extends Observable {
     private enum Dir {
         bas,
         haut,

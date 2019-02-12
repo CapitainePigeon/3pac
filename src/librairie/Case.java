@@ -1,6 +1,6 @@
-package Librairie;
+package librairie;
 
-import Librairie.Entites.*;
+import librairie.entites.*;
 
 import java.util.ArrayList;
 
@@ -38,6 +38,9 @@ public class Case {
         contenu.clear();
     }
 
+    public boolean isWall(){
+        return isMur;
+    }
     public String toString(){
         if (isMur)
             return "#";
