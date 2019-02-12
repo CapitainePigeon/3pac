@@ -3,7 +3,7 @@ package metier.jeuPacMan;
 import metier.librairie.Grille;
 import metier.librairie.Entite;
 
-public class PacMan extends Entite implements Runnable{
+public class PacMan extends Entite{
     public String toString(){
         return "O";
     }

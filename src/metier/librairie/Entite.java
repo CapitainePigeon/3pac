@@ -3,7 +3,7 @@ package metier.librairie;
 
 import java.util.Observable;
 
-public abstract class Entite extends Observable {
+public abstract class Entite extends Observable implements Runnable {
     private enum Dir {
         bas,
         haut,
