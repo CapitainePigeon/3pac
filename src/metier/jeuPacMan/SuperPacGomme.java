@@ -1,8 +1,8 @@
 package metier.jeuPacMan;
 
-import metier.librairie.Entite;
+import metier.librairie.Item;
 
-public class SuperPacGomme extends Entite {
+public class SuperPacGomme extends Item {
     public String toString(){
         return "¤";
     }
