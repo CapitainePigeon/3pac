@@ -18,7 +18,7 @@ public class Console implements Observer {
         Case[][] tab=j.getState();
         for(int i=0;i<tab.length;i++){
             for(int k=0;k<tab[i].length;k++){
-                System.out.print("|"+tab[i][k]);
+                System.out.print(" "+tab[i][k]);
             }
             System.out.println();
         }

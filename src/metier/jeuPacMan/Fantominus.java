@@ -4,7 +4,7 @@ package metier.jeuPacMan;
 import metier.librairie.Grille;
 import metier.librairie.Entite;
 
-public class Fantominus extends Entite implements Runnable {
+public class Fantominus extends Entite {
     public String toString(){
         return "M";
     }
