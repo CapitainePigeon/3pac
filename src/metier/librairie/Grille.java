@@ -21,5 +21,14 @@ public class Grille {
         tab = new Case[nbLignes][nbColones];
     }
 
-
+    public String toString(){
+        String sortie="";
+        for(int i=0;i<tab.length;i++){
+            for(int k=0;k<tab[i].length;k++){
+                sortie+=("|"+tab[i][k]);
+            }
+            sortie+="\n";
+        }
+        return sortie;
+    }
 }

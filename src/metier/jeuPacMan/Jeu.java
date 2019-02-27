@@ -163,6 +163,9 @@ public class Jeu extends Observable implements Runnable, Observer
 
         return grille.getTab();
     }
+    public String toString(){
+        return grille.toString();
+    }
 
     @Override
     public void update(Observable o, Object arg) {
