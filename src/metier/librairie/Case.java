@@ -1,13 +1,29 @@
 package metier.librairie;
 
+import javafx.scene.image.ImageView;
 import metier.jeuPacMan.*;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class Case {
+public class Case extends Observable {
     boolean isMur=false;
     ArrayList<Entite> entites =new ArrayList<>();
     ArrayList<Item> items=new ArrayList<>();
+    ImageView imgview;
+
+    public ImageView getImgview() {
+        return imgview;
+    }
+
+    public void aChangé(){
+        setChanged();
+        notifyObservers();
+    }
+
+    public void setImgview(ImageView imgview) {
+        this.imgview = imgview;
+    }
 
     public Case(ArrayList<Entite> entites) {
         this.entites = entites;
@@ -54,4 +70,5 @@ public class Case {
             return items.get(items.size()-1).toString();
         return " ";
     }
+
 }

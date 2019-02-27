@@ -20,6 +20,8 @@ import metier.librairie.Case;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Observable;
+import java.util.Observer;
 
 public class Main extends Application {
 
@@ -31,13 +33,15 @@ public class Main extends Application {
 
         // permet de placer les diffrents boutons dans une grille
         GridPane gPane = new GridPane();
+
         int column = 0;
         int row = 0;
 
         // création des bouton et placement dans la grille
         for (Case[] ligne : j.getState()) {
             for (Case uneCase : ligne) {
-                String file="";
+                //uneCase.addObserver();
+               /* String file="";
                 switch (uneCase.toString()){
                     case "#":
                         file="mur.png";
@@ -57,12 +61,50 @@ public class Main extends Application {
                     case "M":
                         file="fantominus.png";
                         break;
-                }
+                }*/
 
-                Image img = new Image("File:src/ressources/"+file,
+                /*Image img = new Image("File:src/ressources/"+file,
                         20,20,false,false);
+                ImageView imgview=new ImageView(img);
+                gPane.add(imgview, column++, row);*/
+                uneCase.setImgview(new ImageView());
+                gPane.add(uneCase.getImgview(), column++, row);
+                uneCase.addObserver((o, arg) -> {
+                    String file="";
+                    switch (o.toString()){
+                        case "#":
+                            file="mur.png";
+                            break;
+                        case " ":
+                            file="couloir.png";
+                            break;
+                        case ".":
+                            file="pacgomme.png";
+                            break;
+                        case "¤":
+                            file="superpacgomme.png";
+                            break;
+                        case "O":
+                            file="pacman.png";
+                            break;
+                        case "M":
+                            file="fantominus.png";
+                            break;
+                    }
+                    System.out.println("lala");
+                    ((Case)o).getImgview().setImage(new Image("File:src/ressources/"+file,
+                            20,20,false,false));
+                });
+               /* uneCase.setChanged();
+                notifyObservers();*/
+               uneCase.aChangé();
+               // uneCase.hasChanged();
+               // uneCase.notifyObservers();
+                //uneCase.notifyObservers("l");
+                //System.out.println(uneCase.countObservers());
 
-                gPane.add(new ImageView(img), column++, row);
+              //  imgview.setImage(new Image("File:src/ressources/mur.png",
+              //          20,20,false,false));
                 //j.addObserver();
                /* final Text t = new Text(uneCase.toString());
                 t.setWrappingWidth(30);
