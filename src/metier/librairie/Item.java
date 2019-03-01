@@ -1,8 +1,7 @@
 package metier.librairie;
 
-import java.util.Observable;
 
-public abstract class Item extends Observable {
+public abstract class Item {
 
     public String toString(){
         return " ";

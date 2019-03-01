@@ -1,20 +1,21 @@
 package metier.librairie;
 
 
-import java.util.Observable;
 
-public abstract class Entite extends Observable implements Runnable {
-    private enum Dir {
+public abstract class Entite implements Runnable {
+    public enum Dir {
         bas,
         haut,
         gauche,
         droite;
     }
+    protected Dir direction;
+    protected int x,y;
 
-    boolean deplacer(String dir){
-        Dir dir1;
-        return false;
+    public void changeDir(Dir dir){
+        direction=dir;
     }
+
     public String toString(){
         return " ";
     }

@@ -40,33 +40,7 @@ public class Main extends Application {
         // création des bouton et placement dans la grille
         for (Case[] ligne : j.getState()) {
             for (Case uneCase : ligne) {
-                //uneCase.addObserver();
-               /* String file="";
-                switch (uneCase.toString()){
-                    case "#":
-                        file="mur.png";
-                        break;
-                    case " ":
-                        file="couloir.png";
-                        break;
-                    case ".":
-                        file="pacgomme.png";
-                        break;
-                    case "¤":
-                        file="superpacgomme.png";
-                        break;
-                    case "O":
-                        file="pacman.png";
-                        break;
-                    case "M":
-                        file="fantominus.png";
-                        break;
-                }*/
 
-                /*Image img = new Image("File:src/ressources/"+file,
-                        20,20,false,false);
-                ImageView imgview=new ImageView(img);
-                gPane.add(imgview, column++, row);*/
                 uneCase.setImgview(new ImageView());
                 gPane.add(uneCase.getImgview(), column++, row);
                 uneCase.addObserver((o, arg) -> {
@@ -91,39 +65,10 @@ public class Main extends Application {
                             file="fantominus.png";
                             break;
                     }
-                    System.out.println("lala");
                     ((Case)o).getImgview().setImage(new Image("File:src/ressources/"+file,
                             20,20,false,false));
                 });
-               /* uneCase.setChanged();
-                notifyObservers();*/
                uneCase.aChangé();
-               // uneCase.hasChanged();
-               // uneCase.notifyObservers();
-                //uneCase.notifyObservers("l");
-                //System.out.println(uneCase.countObservers());
-
-              //  imgview.setImage(new Image("File:src/ressources/mur.png",
-              //          20,20,false,false));
-                //j.addObserver();
-               /* final Text t = new Text(uneCase.toString());
-                t.setWrappingWidth(30);
-                t.setFont(Font.font("Verdana", 20));
-                t.setTextAlignment(TextAlignment.CENTER);
-
-                gPane.add(t, column++, row);
-
-                // un controleur (EventHandler) par bouton écoute et met à jour le champ affichage
-                t.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-                    @Override
-                    public void handle(MouseEvent event) {
-                        // affichage.setText(affichage.getText() + t.getText());
-                    }
-
-                });*/
-
-
             }
             column = 0;
             row++;

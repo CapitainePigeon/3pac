@@ -38,6 +38,7 @@ public class Case extends Observable {
 
     public void add(Entite entite){
         this.entites.add(entite);
+
     }
 
     public void add(Item item){
@@ -45,13 +46,19 @@ public class Case extends Observable {
     }
 
     public void setPacGomme(){
-        this.items.add(new PacGomme());
+        this.add(new PacGomme());
     }
 
     public void setSuperPacGomme(){
-        this.items.add(new SuperPacGomme());
+        this.add(new SuperPacGomme());
     }
 
+    public void remove(Entite entite){
+        entites.remove(entite);
+    }
+    public void remove(Item item){
+        items.remove(item);
+    }
     public void clear (){
         entites.clear();
         items.clear();

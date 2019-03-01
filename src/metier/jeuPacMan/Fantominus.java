@@ -10,17 +10,21 @@ public class Fantominus extends Entite {
     }
     protected Grille grille;
 
-    public Fantominus(Grille grille) {
+    public Fantominus(Grille grille,int x, int y) {
         this.grille = grille;
+        this.x=x;
+        this.y=y;
+        this.direction=Dir.gauche;
+
     }
 
     @Override
     public void run() {
         while(true){
-            setChanged();
-            notifyObservers();
+            grille.deplacer(this);
+            //System.out.println("cc");
             try {
-                Thread.sleep(1000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
