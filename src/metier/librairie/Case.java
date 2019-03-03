@@ -37,7 +37,23 @@ public class Case extends Observable {
     }
 
     public void add(Entite entite){
+        for (Entite ent :entites){
+            if(ent.interagir(entite)){
+                // TO DO
+            }
+        }
         this.entites.add(entite);
+        ArrayList<Item> itemsASupprimer=new ArrayList<>();
+        for(Item item :items){
+            if(item.utiliser(entite)){
+                itemsASupprimer.add(item);
+            }
+        }
+        for(Item item :itemsASupprimer){
+            if(item.utiliser(entite)){
+                items.remove(item);
+            }
+        }
 
     }
 

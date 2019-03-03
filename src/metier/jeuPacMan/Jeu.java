@@ -9,7 +9,7 @@ import java.util.Observer;
 
 public class Jeu extends Observable implements Runnable, Observer
 {
-    Grille grille;
+    public Grille grille;
     public Jeu() {
 
         grille =new Grille(31,28);
@@ -131,10 +131,7 @@ public class Jeu extends Observable implements Runnable, Observer
         setSuperPacGomme(23,1);
         setSuperPacGomme(23,26);
 
-        grille.getTab(23,13).add(new PacMan(grille,23,13));
-        Fantominus fant=new Fantominus(grille,11,14);
-        grille.getTab(11,14).add(fant);
-        new Thread(fant).start();
+
 
        // ((Case)tab[1][3]).add(new Fantominus());
     }

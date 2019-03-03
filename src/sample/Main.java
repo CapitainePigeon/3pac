@@ -2,21 +2,23 @@ package sample;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import metier.jeuPacMan.Fantominus;
 import metier.jeuPacMan.Jeu;
+import metier.jeuPacMan.PacMan;
 import metier.librairie.Case;
+import metier.librairie.Entite;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,6 +31,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         Jeu j=new Jeu();
+
         BorderPane border = new BorderPane();
 
         // permet de placer les diffrents boutons dans une grille
@@ -74,6 +77,17 @@ public class Main extends Application {
             row++;
         }
 
+
+        PacMan pacman =new PacMan(j.grille,23,13);
+        j.grille.getTab(23,13).add(pacman);
+        Fantominus fant=new Fantominus(j.grille,11,14);
+        j.grille.getTab(11,14).add(fant);
+
+
+
+
+
+
         gPane.setGridLinesVisible(false);
 
         border.setCenter(gPane);
@@ -81,6 +95,30 @@ public class Main extends Application {
         primaryStage.setTitle("3Pac");
         primaryStage.setScene(new Scene(border, 300, 275));
         primaryStage.show();
+        primaryStage.getScene().setOnKeyPressed(
+                new EventHandler<KeyEvent>()
+                {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        switch (event.getCode()) {
+                            case UP:
+                                pacman.changeDir(Entite.Dir.haut);
+                                break;
+                            case DOWN:
+                                pacman.changeDir(Entite.Dir.bas);
+                                break;
+                            case LEFT:
+                                pacman.changeDir(Entite.Dir.gauche);
+                                break;
+                            case RIGHT:
+                                pacman.changeDir(Entite.Dir.droite);
+                                break;
+                        }
+                    }
+                });
+
+        new Thread(fant).start();
+        new Thread(pacman).start();
     }
 
 

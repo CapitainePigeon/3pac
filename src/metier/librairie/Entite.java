@@ -11,7 +11,7 @@ public abstract class Entite implements Runnable {
     }
     protected Dir direction;
     protected int x,y;
-
+    public abstract boolean interagir(Entite entite);
     public void changeDir(Dir dir){
         direction=dir;
     }

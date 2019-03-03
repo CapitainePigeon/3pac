@@ -26,7 +26,7 @@ public class Grille {
     }
 
     public boolean deplacer(Entite entite){
-
+        //System.out.println(entite);
         try {
             switch(entite.direction){
                 case bas :
@@ -62,7 +62,6 @@ public class Grille {
                     if(!getTab(entite.x,entite.y+1).isWall()){
                         getTab(entite.x,entite.y+1).add(entite);
                         getTab(entite.x,entite.y).remove(entite);
-
                         getTab(entite.x,entite.y).aChangé();
                         getTab(entite.x,entite.y+1).aChangé();
                         entite.y=entite.y+1;

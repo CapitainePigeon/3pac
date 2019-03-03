@@ -5,6 +5,15 @@ import metier.librairie.Grille;
 import metier.librairie.Entite;
 
 public class Fantominus extends Entite {
+    @Override
+    public boolean interagir(Entite entite) {
+        if(entite.getClass().equals(PacMan.class)){
+            ((PacMan)entite).kill();
+            return true;
+        }
+        return false;
+    }
+
     public String toString(){
         return "M";
     }
