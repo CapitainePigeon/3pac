@@ -17,6 +17,11 @@ public class Fantominus extends Entite {
     public String toString(){
         return "M";
     }
+
+    public String getFileImg(){
+        return "fantominus.png";
+    }
+
     protected Grille grille;
 
     public Fantominus(Grille grille,int x, int y) {

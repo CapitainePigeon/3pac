@@ -48,7 +48,7 @@ public class Main extends Application {
                 gPane.add(uneCase.getImgview(), column++, row);
                 uneCase.addObserver((o, arg) -> {
                     String file="";
-                    switch (o.toString()){
+                    /*switch (o.toString()){
                         case "#":
                             file="mur.png";
                             break;
@@ -68,8 +68,9 @@ public class Main extends Application {
                             file="fantominus.png";
                             break;
                     }
-                    ((Case)o).getImgview().setImage(new Image("File:src/ressources/"+file,
-                            20,20,false,false));
+                    ((Case)o).getImgview().setImage(new Image("File:src/ressources/"+file,20,20,false,false));
+                    */
+                    ((Case)o).getImgview().setImage(new Image("File:src/ressources/"+((Case)o).getFileImg(),20,20,false,false));
                 });
                uneCase.aChangé();
             }

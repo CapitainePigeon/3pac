@@ -9,6 +9,11 @@ public class PacMan extends Entite{
     public String toString(){
         return "O";
     }
+
+    public String getFileImg(){
+        return "pacman.png";
+    }
+
     protected Grille grille;
     private Dir futureDirection;
 
