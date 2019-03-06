@@ -99,4 +99,13 @@ public class Case extends Observable {
         return " ";
     }
 
+    public String getFileImg(){
+        if (isMur)
+            return "mur.png";
+        if(entites.size()!=0)
+            return entites.get(entites.size()-1).getFileImg();
+        if(items.size()!=0)
+            return items.get(items.size()-1).getFileImg();
+        return "couloir.png";
+    }
 }

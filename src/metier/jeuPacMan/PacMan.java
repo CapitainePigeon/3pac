@@ -9,6 +9,26 @@ public class PacMan extends Entite{
     public String toString(){
         return "O";
     }
+
+    public String getFileImg(){
+        String str="pacman_";
+        switch (this.direction) {
+            case haut:
+                str = str + "haut";
+                break;
+            case bas:
+                str = str + "bas";
+                break;
+            case droite:
+                str = str + "droite";
+                break;
+            case gauche:
+                str = str + "gauche";
+                break;
+        }
+        return str+".png";
+    }
+
     protected Grille grille;
     private Dir futureDirection;
 
@@ -85,7 +105,7 @@ public class PacMan extends Entite{
     }
 
     public void kill() {
-        System.out.println("t mort");
+        System.out.println("t mor pd");
     }
 
 

@@ -7,6 +7,11 @@ public class SuperPacGomme extends Item {
     public String toString(){
         return "¤";
     }
+
+    public String getFileImg(){
+        return "superpacgomme.png";
+    }
+
     @Override
     public boolean utiliser(Entite entite) {
         if(entite.getClass().equals(PacMan.class)){

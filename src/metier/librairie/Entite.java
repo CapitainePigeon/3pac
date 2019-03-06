@@ -19,4 +19,8 @@ public abstract class Entite implements Runnable {
     public String toString(){
         return " ";
     }
+
+    public String getFileImg(){
+        return "couloir.png";
+    }
 }

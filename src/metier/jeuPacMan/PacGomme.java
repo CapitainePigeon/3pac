@@ -9,6 +9,10 @@ public class PacGomme extends Item {
         return ".";
     }
 
+    public String getFileImg(){
+        return "pacgomme.png";
+    }
+
     @Override
     public boolean utiliser(Entite entite) {
         if(entite.getClass().equals(PacMan.class)){
