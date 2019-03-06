@@ -1,6 +1,7 @@
 package metier.librairie;
 
-import metier.librairie.Case;
+
+import metier.jeuPacMan.Teleporteur;
 
 public class Grille {
     private Case[][] tab;
@@ -27,14 +28,15 @@ public class Grille {
 
     public boolean deplacer(Entite entite){
         //System.out.println(entite);
+        if(getTab(entite.x,entite.y).getClass()== Teleporteur.class){
+
+        }
         try {
             switch(entite.direction){
                 case bas :
                     if(!getTab(entite.x+1,entite.y).isWall()){
                         getTab(entite.x+1,entite.y).add(entite);
                         getTab(entite.x,entite.y).remove(entite);
-                        getTab(entite.x,entite.y).aChangé();
-                        getTab(entite.x+1,entite.y).aChangé();
                         entite.x=entite.x+1;
                     }
                     break;
@@ -42,8 +44,6 @@ public class Grille {
                     if(!getTab(entite.x-1,entite.y).isWall()){
                         getTab(entite.x-1,entite.y).add(entite);
                         getTab(entite.x,entite.y).remove(entite);
-                        getTab(entite.x,entite.y).aChangé();
-                        getTab(entite.x-1,entite.y).aChangé();
                         entite.x=entite.x-1;
                     }
                     break;
@@ -52,8 +52,6 @@ public class Grille {
                     if(!getTab(entite.x,entite.y-1).isWall()){
                         getTab(entite.x,entite.y-1).add(entite);
                         getTab(entite.x,entite.y).remove(entite);
-                        getTab(entite.x,entite.y).aChangé();
-                        getTab(entite.x,entite.y-1).aChangé();
                         entite.y=entite.y-1;
                     }
                     break;
@@ -62,8 +60,6 @@ public class Grille {
                     if(!getTab(entite.x,entite.y+1).isWall()){
                         getTab(entite.x,entite.y+1).add(entite);
                         getTab(entite.x,entite.y).remove(entite);
-                        getTab(entite.x,entite.y).aChangé();
-                        getTab(entite.x,entite.y+1).aChangé();
                         entite.y=entite.y+1;
                     }
                     break;

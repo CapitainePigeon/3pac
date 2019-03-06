@@ -17,6 +17,7 @@ public class Case extends Observable {
     }
 
     public void aChangé(){
+
         setChanged();
         notifyObservers();
     }
@@ -54,11 +55,12 @@ public class Case extends Observable {
                 items.remove(item);
             }
         }
-
+        aChangé();
     }
 
     public void add(Item item){
         this.items.add(item);
+        aChangé();
     }
 
     public void setPacGomme(){
@@ -71,13 +73,16 @@ public class Case extends Observable {
 
     public void remove(Entite entite){
         entites.remove(entite);
+        aChangé();
     }
     public void remove(Item item){
         items.remove(item);
+        aChangé();
     }
     public void clear (){
         entites.clear();
         items.clear();
+        aChangé();
     }
 
     public boolean isWall(){

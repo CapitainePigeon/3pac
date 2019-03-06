@@ -93,7 +93,7 @@ public class Main extends Application {
         border.setCenter(gPane);
 
         primaryStage.setTitle("3Pac");
-        primaryStage.setScene(new Scene(border, 300, 275));
+        primaryStage.setScene(new Scene(border, 28*20, 31*20));
         primaryStage.show();
         primaryStage.getScene().setOnKeyPressed(
                 new EventHandler<KeyEvent>()
