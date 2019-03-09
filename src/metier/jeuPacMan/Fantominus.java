@@ -1,6 +1,7 @@
 package metier.jeuPacMan;
 
 
+import metier.librairie.Case;
 import metier.librairie.Grille;
 import metier.librairie.Entite;
 
@@ -24,10 +25,10 @@ public class Fantominus extends Entite {
 
     protected Grille grille;
 
-    public Fantominus(Grille grille,int x, int y) {
+    public Fantominus(Grille grille, Case caseOccupe) {
         this.grille = grille;
-        this.x=x;
-        this.y=y;
+        this.caseOccupe=caseOccupe;
+        caseOccupe.add(this);
         this.direction=Dir.gauche;
 
     }

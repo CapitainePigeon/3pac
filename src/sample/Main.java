@@ -56,10 +56,10 @@ public class Main extends Application {
         }
 
 
-        PacMan pacman =new PacMan(j.grille,23,13);
-        j.grille.getTab(23,13).add(pacman);
-        Fantominus fant=new Fantominus(j.grille,11,14);
-        j.grille.getTab(11,14).add(fant);
+        PacMan pacman =new PacMan(j.grille,j.grille.getTab(23,13));
+        //j.grille.getTab(23,13).add(pacman);
+        Fantominus fant=new Fantominus(j.grille,j.grille.getTab(11,14));
+        //j.grille.getTab(11,14).add(fant);
 
 
 

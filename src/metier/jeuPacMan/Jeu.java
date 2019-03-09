@@ -1,6 +1,7 @@
 package metier.jeuPacMan;
 
 import metier.librairie.Case;
+import metier.librairie.Entite;
 import metier.librairie.Grille;
 
 
@@ -30,7 +31,7 @@ public class Jeu extends Observable implements Runnable, Observer
         }
         grille.setTab(new Case(true),1,13);
         grille.setTab(new Case(true),1,14);
-
+        grille.setTab(new Case(true),8,19);
 
         grille.setTab(new Case(true),8,13);
         grille.setTab(new Case(true),8,14);
@@ -71,8 +72,8 @@ public class Jeu extends Observable implements Runnable, Observer
         setPacGomme(7,26);
         setPacGomme(6,9);
         setPacGomme(7,9);
-        setPacGomme(6,19);
-        setPacGomme(7,19);
+        setPacGomme(6,18);
+        setPacGomme(7,18);
 
         grille.setTab(new Case(),9,12);
         grille.setTab(new Case(),10,12);
@@ -131,9 +132,11 @@ public class Jeu extends Observable implements Runnable, Observer
         setSuperPacGomme(23,1);
         setSuperPacGomme(23,26);
 
+        grille.getTab(14,1).setVoisin(grille.getTab(14,26), Entite.Dir.gauche);
 
+        grille.getTab(14,26).setVoisin(grille.getTab(14,1), Entite.Dir.droite);
 
-       // ((Case)tab[1][3]).add(new Fantominus());
+        grille.setCouloirs();
     }
 
     public void setPacGomme(int ligne, int colone){

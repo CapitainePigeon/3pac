@@ -1,7 +1,7 @@
 package metier.librairie;
 
 
-import metier.jeuPacMan.Teleporteur;
+import static metier.librairie.Entite.Dir.*;
 
 public class Grille {
     private Case[][] tab;
@@ -25,13 +25,32 @@ public class Grille {
     public Grille(int nbLignes, int nbColones) {
         tab = new Case[nbLignes][nbColones];
     }
+    public void setCouloirs(){
+        for(int ligne = 1; ligne < tab.length-1; ligne++) {
+            for (int colone = 1; colone < tab[0].length-1; colone++) {
+                if (!tab[ligne][colone].isWall())
+                {
+                    if(!tab[ligne-1][colone].isWall()){
+                        tab[ligne][colone].setVoisin(tab[ligne-1][colone],haut);
+                    }
+                    if(!tab[ligne+1][colone].isWall()){
+                        tab[ligne][colone].setVoisin(tab[ligne+1][colone],bas);
+                    }
+                    if(!tab[ligne][colone-1].isWall()){
+                        tab[ligne][colone].setVoisin(tab[ligne][colone-1],gauche);
+                    }
+                    if(!tab[ligne][colone+1].isWall()){
+                        tab[ligne][colone].setVoisin(tab[ligne][colone+1],droite);
+                    }
+                }
+            }
+        }
+    }
 
     public boolean deplacer(Entite entite){
+        entite.caseOccupe.deplacer(entite);
         //System.out.println(entite);
-        if(getTab(entite.x,entite.y).getClass()== Teleporteur.class){
-
-        }
-        try {
+        /*try {
             switch(entite.direction){
                 case bas :
                     if(!getTab(entite.x+1,entite.y).isWall()){
@@ -67,7 +86,7 @@ public class Grille {
         }catch (ArrayIndexOutOfBoundsException e){
                 System.out.println("ArrayIndexOutOfBoundsException ligne:"+entite.x+" colone :"+entite.y);
                 return false;
-        }
+        }*/
         return false;
     }
 

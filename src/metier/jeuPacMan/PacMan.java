@@ -1,5 +1,6 @@
 package metier.jeuPacMan;
 
+import metier.librairie.Case;
 import metier.librairie.Grille;
 import metier.librairie.Entite;
 
@@ -7,11 +8,15 @@ import static metier.librairie.Entite.Dir.*;
 
 public class PacMan extends Entite{
     public String toString(){
+
         return "O";
     }
 
     public String getFileImg(){
         String str="pacman_";
+        if (this.direction==null){
+            return "pacman_gauche.png";
+        }
         switch (this.direction) {
             case haut:
                 str = str + "haut";
@@ -51,10 +56,10 @@ public class PacMan extends Entite{
     private int pacGommeMangé=0;
     private int superPacGommeMangé=0;
 
-    public PacMan(Grille grille,int x, int y) {
+    public PacMan(Grille grille,Case caseOccupe) {
         this.grille = grille;
-        this.x=x;
-        this.y=y;
+        this.caseOccupe=caseOccupe;
+        caseOccupe.add(this);
     }
 
     @Override
@@ -62,23 +67,8 @@ public class PacMan extends Entite{
         while(true){
             //System.out.println("pac");
             if(futureDirection!=null){
-                switch (futureDirection){
-                    case haut:
-                        if(!grille.getTab(x-1,y).isWall())
-                            direction=haut;
-                        break;
-                    case bas:
-                        if(!grille.getTab(x+1,y).isWall())
-                            direction=bas;
-                        break;
-                    case gauche:
-                        if(!grille.getTab(x,y-1).isWall())
-                            direction=gauche;
-                        break;
-                    case droite:
-                        if(!grille.getTab(x,y+1).isWall())
-                            direction=droite;
-                        break;
+                if(caseOccupe.getVoisin(futureDirection)!=null) {
+                    direction=futureDirection;
                 }
                 grille.deplacer(this);
             }

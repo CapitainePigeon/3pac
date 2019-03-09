@@ -10,10 +10,77 @@ public class Case extends Observable {
     boolean isMur=false;
     ArrayList<Entite> entites =new ArrayList<>();
     ArrayList<Item> items=new ArrayList<>();
+    Case casesVoisines[]= new Case[4];
     ImageView imgview;
 
     public ImageView getImgview() {
         return imgview;
+    }
+
+    public void deplacer(Entite entite){
+        if(!entites.contains(entite) || entite.direction==null)
+            return ;
+        switch (entite.direction) {
+            case bas:
+                if (casesVoisines[1]!=null) {
+                    entite.caseOccupe = casesVoisines[1];
+                    casesVoisines[1].add(entite);
+                    remove(entite);
+                }
+                break;
+            case haut:
+                if (casesVoisines[2]!=null) {
+                    entite.caseOccupe = casesVoisines[2];
+                    casesVoisines[2].add(entite);
+                    remove(entite);
+                }
+                break;
+            case gauche:
+                if (casesVoisines[3]!=null) {
+                    entite.caseOccupe = casesVoisines[3];
+                    casesVoisines[3].add(entite);
+                    remove(entite);
+                }
+                break;
+            case droite:
+                if (casesVoisines[0]!=null) {
+                    entite.caseOccupe = casesVoisines[0];
+                    casesVoisines[0].add(entite);
+                    remove(entite);
+                }
+                break;
+        }
+
+    }
+
+    public Case getVoisin(Entite.Dir direction){
+        switch (direction){
+            case bas:
+                return casesVoisines[1];
+            case haut:
+                return casesVoisines[2];
+            case gauche:
+                return casesVoisines[3];
+            case droite:
+                return casesVoisines[0];
+        }
+        return null;
+    }
+    public void setVoisin(Case caseVideVoisine, Entite.Dir direction){
+        switch (direction){
+            case bas:
+                casesVoisines[1]=caseVideVoisine;
+                break;
+            case haut:
+                casesVoisines[2]=caseVideVoisine;
+                break;
+            case gauche:
+                casesVoisines[3]=caseVideVoisine;
+                break;
+            case droite:
+                casesVoisines[0]=caseVideVoisine;
+                break;
+        }
     }
 
     public void aChangé(){
