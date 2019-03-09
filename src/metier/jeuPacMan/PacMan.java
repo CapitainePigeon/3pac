@@ -8,7 +8,6 @@ import static metier.librairie.Entite.Dir.*;
 
 public class PacMan extends Entite{
     public String toString(){
-
         return "O";
     }
 
@@ -95,8 +94,7 @@ public class PacMan extends Entite{
     }
 
     public void kill() {
-        System.out.println("t mor pd");
+        System.out.println("t mor");
     }
-
 
 }
