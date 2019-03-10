@@ -47,48 +47,6 @@ public class Grille {
         }
     }
 
-    public boolean deplacer(Entite entite){
-        entite.caseOccupe.deplacer(entite);
-        //System.out.println(entite);
-        /*try {
-            switch(entite.direction){
-                case bas :
-                    if(!getTab(entite.x+1,entite.y).isWall()){
-                        getTab(entite.x+1,entite.y).add(entite);
-                        getTab(entite.x,entite.y).remove(entite);
-                        entite.x=entite.x+1;
-                    }
-                    break;
-                case haut :
-                    if(!getTab(entite.x-1,entite.y).isWall()){
-                        getTab(entite.x-1,entite.y).add(entite);
-                        getTab(entite.x,entite.y).remove(entite);
-                        entite.x=entite.x-1;
-                    }
-                    break;
-                case gauche :
-
-                    if(!getTab(entite.x,entite.y-1).isWall()){
-                        getTab(entite.x,entite.y-1).add(entite);
-                        getTab(entite.x,entite.y).remove(entite);
-                        entite.y=entite.y-1;
-                    }
-                    break;
-                case droite :
-
-                    if(!getTab(entite.x,entite.y+1).isWall()){
-                        getTab(entite.x,entite.y+1).add(entite);
-                        getTab(entite.x,entite.y).remove(entite);
-                        entite.y=entite.y+1;
-                    }
-                    break;
-            }
-        }catch (ArrayIndexOutOfBoundsException e){
-                System.out.println("ArrayIndexOutOfBoundsException ligne:"+entite.x+" colone :"+entite.y);
-                return false;
-        }*/
-        return false;
-    }
 
     public String toString(){
         String sortie="";

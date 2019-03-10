@@ -17,6 +17,12 @@ public class Case extends Observable {
         return imgview;
     }
 
+    public void deplacer(Entite entite, Case caseSuivante){
+        entite.caseOccupe = caseSuivante;
+        caseSuivante.add(entite);
+        remove(entite);
+    }
+
     public void deplacer(Entite entite){
         if(!entites.contains(entite) || entite.direction==null)
             return ;
@@ -142,6 +148,7 @@ public class Case extends Observable {
         entites.remove(entite);
         aChangé();
     }
+
     public void remove(Item item){
         items.remove(item);
         aChangé();

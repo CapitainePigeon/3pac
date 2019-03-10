@@ -1,9 +1,11 @@
 package metier.jeuPacMan;
 
 
+import metier.jeuPacMan.cerveauDeFantominus.IAFantominus;
 import metier.librairie.Case;
-import metier.librairie.Grille;
 import metier.librairie.Entite;
+
+import java.util.List;
 
 public class Fantominus extends Entite {
     @Override
@@ -23,23 +25,28 @@ public class Fantominus extends Entite {
         return "fantominus.png";
     }
 
-    protected Grille grille;
-
-    public Fantominus(Grille grille, Case caseOccupe) {
-        this.grille = grille;
+    private IAFantominus IA;
+    public Fantominus(Case caseOccupe, IAFantominus IA) {
+        this.IA=IA;
         this.caseOccupe=caseOccupe;
         caseOccupe.add(this);
-        this.direction=Dir.gauche;
 
     }
 
     @Override
     public void run() {
+        List<Case> mouvement=IA.getCases(this);
         while(true){
-            grille.deplacer(this);
+            if(mouvement.size()<2)
+                mouvement = IA.getCases(this);
+
+                caseOccupe.deplacer(this, mouvement.get(0));
+            if(mouvement.size()>1) {
+                mouvement.remove(0);
+            }
             //System.out.println("cc");
             try {
-                Thread.sleep(5000);
+                Thread.sleep(300);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

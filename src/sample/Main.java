@@ -6,30 +6,21 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import metier.jeuPacMan.Fantominus;
 import metier.jeuPacMan.Jeu;
 import metier.jeuPacMan.PacMan;
+import metier.jeuPacMan.cerveauDeFantominus.Disjktra;
+import metier.jeuPacMan.cerveauDeFantominus.GraphDesCouloirs;
 import metier.librairie.Case;
 import metier.librairie.Entite;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Observable;
-import java.util.Observer;
 
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+    public void start(Stage primaryStage){
         Jeu j=new Jeu();
 
         BorderPane border = new BorderPane();
@@ -56,9 +47,12 @@ public class Main extends Application {
         }
 
 
-        PacMan pacman =new PacMan(j.grille,j.grille.getTab(23,13));
+        PacMan pacman =new PacMan(j.grille.getTab(23,13));
         //j.grille.getTab(23,13).add(pacman);
-        Fantominus fant=new Fantominus(j.grille,j.grille.getTab(11,14));
+        GraphDesCouloirs graphDesCouloirs= new GraphDesCouloirs(j.grille);
+        Disjktra dij =new Disjktra(graphDesCouloirs,pacman);
+
+        Fantominus fant=new Fantominus(j.grille.getTab(11,14),dij);
         //j.grille.getTab(11,14).add(fant);
 
 
@@ -101,13 +95,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-      /* Jeu j=new Jeu();
-        Console c =new Console(j);
-        //j.addObserver(c);
-        new Thread(j).start();
-       /* Controller controller =new Controller();
-        controller.initialize();
-        j.addObserver(c);*/
         launch(args);
     }
 }

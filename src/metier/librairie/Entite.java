@@ -10,7 +10,7 @@ public abstract class Entite implements Runnable {
         droite;
     }
     protected Dir direction;
-    protected Case caseOccupe;
+    public Case caseOccupe;
     public abstract boolean interagir(Entite entite);
     public void changeDir(Dir dir){
         direction=dir;

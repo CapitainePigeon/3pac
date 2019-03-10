@@ -133,9 +133,7 @@ public class Jeu extends Observable implements Runnable, Observer
         setSuperPacGomme(23,26);
 
         grille.getTab(14,1).setVoisin(grille.getTab(14,26), Entite.Dir.gauche);
-
         grille.getTab(14,26).setVoisin(grille.getTab(14,1), Entite.Dir.droite);
-
         grille.setCouloirs();
     }
 

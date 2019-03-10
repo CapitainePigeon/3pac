@@ -1,10 +1,7 @@
 package metier.jeuPacMan;
 
 import metier.librairie.Case;
-import metier.librairie.Grille;
 import metier.librairie.Entite;
-
-import static metier.librairie.Entite.Dir.*;
 
 public class PacMan extends Entite{
     public String toString(){
@@ -33,7 +30,7 @@ public class PacMan extends Entite{
         return str+".png";
     }
 
-    protected Grille grille;
+    //protected Grille grille;
     private Dir futureDirection;
 
     public int getPacGommeMangé() {
@@ -55,8 +52,8 @@ public class PacMan extends Entite{
     private int pacGommeMangé=0;
     private int superPacGommeMangé=0;
 
-    public PacMan(Grille grille,Case caseOccupe) {
-        this.grille = grille;
+    public PacMan(Case caseOccupe) {
+        //this.grille = grille;
         this.caseOccupe=caseOccupe;
         caseOccupe.add(this);
     }
@@ -69,7 +66,7 @@ public class PacMan extends Entite{
                 if(caseOccupe.getVoisin(futureDirection)!=null) {
                     direction=futureDirection;
                 }
-                grille.deplacer(this);
+                caseOccupe.deplacer(this);
             }
 
             try {
@@ -88,6 +85,7 @@ public class PacMan extends Entite{
         }
         return false;
     }
+
 
     public void changeDir(Dir dir){
         futureDirection=dir;
