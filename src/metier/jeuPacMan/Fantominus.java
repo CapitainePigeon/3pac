@@ -22,7 +22,7 @@ public class Fantominus extends Entite {
     }
 
     public String getFileImg(){
-        return "fantominus.png";
+        return "fantominus_vert.png";
     }
 
     private IAFantominus IA;

@@ -1,8 +1,9 @@
 package metier.librairie;
 
 
+import java.util.Observable;
 
-public abstract class Entite implements Runnable {
+public abstract class Entite extends Observable implements Runnable {
     public enum Dir {
         bas,
         haut,

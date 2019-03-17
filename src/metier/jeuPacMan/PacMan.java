@@ -95,6 +95,8 @@ public class PacMan extends Entite{
     }
 
     public void kill() {
+        setChanged();
+        notifyObservers();
         System.out.println("t mor");
     }
 

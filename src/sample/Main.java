@@ -49,6 +49,12 @@ public class Main extends Application {
 
 
         PacMan pacman =new PacMan(j.grille.getTab(23,13));
+        pacman.addObserver((o, arg) -> {
+            System.out.println("wallah t mort");
+            System.exit(0);
+            //((PacMan)o).getImgview().setImage(new Image("File:src/ressources/"+((Case)o).getFileImg(),20,20,false,false));
+        });
+
         //j.grille.getTab(23,13).add(pacman);
         GraphDesCouloirs graphDesCouloirs= new GraphDesCouloirs(j.grille);
         Random dij =new Random(graphDesCouloirs);
