@@ -12,8 +12,8 @@ import javafx.stage.Stage;
 import metier.jeuPacMan.Fantominus;
 import metier.jeuPacMan.Jeu;
 import metier.jeuPacMan.PacMan;
-import metier.jeuPacMan.cerveauDeFantominus.Disjktra;
 import metier.jeuPacMan.cerveauDeFantominus.GraphDesCouloirs;
+import metier.jeuPacMan.cerveauDeFantominus.Random;
 import metier.librairie.Case;
 import metier.librairie.Entite;
 
@@ -38,7 +38,8 @@ public class Main extends Application {
                 uneCase.setImgview(new ImageView());
                 gPane.add(uneCase.getImgview(), column++, row);
                 uneCase.addObserver((o, arg) -> {
-                    ((Case)o).getImgview().setImage(new Image("File:src/ressources/"+((Case)o).getFileImg(),20,20,false,false));
+                    ((Case)o).getImgview().setImage(new Image("File:src/ressources/"+((Case)o).getFileImg(),
+                            20,20,false,false));
                 });
                uneCase.aChangé();
             }
@@ -50,9 +51,10 @@ public class Main extends Application {
         PacMan pacman =new PacMan(j.grille.getTab(23,13));
         //j.grille.getTab(23,13).add(pacman);
         GraphDesCouloirs graphDesCouloirs= new GraphDesCouloirs(j.grille);
-        Disjktra dij =new Disjktra(graphDesCouloirs,pacman);
+        Random dij =new Random(graphDesCouloirs);
 
-        Fantominus fant=new Fantominus(j.grille.getTab(11,14),dij);
+       // Fantominus fant=new Fantominus(j.grille.getTab(11,14),dij);
+
         //j.grille.getTab(11,14).add(fant);
 
 
@@ -89,7 +91,19 @@ public class Main extends Application {
                     }
                 });
 
-        new Thread(fant).start();
+        Fantominus fant1=new Fantominus(j.grille.getTab(11,14),dij);
+        Fantominus fant2=new Fantominus(j.grille.getTab(11,14),dij);
+        Fantominus fant3=new Fantominus(j.grille.getTab(11,14),dij);
+        Fantominus fant4=new Fantominus(j.grille.getTab(11,14),dij);
+        Fantominus fant5=new Fantominus(j.grille.getTab(11,14),dij);
+        Fantominus fant6=new Fantominus(j.grille.getTab(11,14),dij);
+        new Thread(fant1).start();
+        new Thread(fant2).start();
+        new Thread(fant3).start();
+        new Thread(fant4).start();
+        //new Thread(fant5).start();
+        //new Thread(fant).start();
+        //new Thread(fant6).start();
         new Thread(pacman).start();
     }
 

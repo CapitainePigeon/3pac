@@ -4,11 +4,7 @@ import metier.librairie.Case;
 import metier.librairie.Entite;
 import metier.librairie.Grille;
 
-
-import java.util.Observable;
-import java.util.Observer;
-
-public class Jeu extends Observable implements Runnable, Observer
+public class Jeu
 {
     public Grille grille;
     public Jeu() {
@@ -147,18 +143,7 @@ public class Jeu extends Observable implements Runnable, Observer
         grille.setTab(c,ligne,colone);
         c.setSuperPacGomme();
     }
-    @Override
-    public void run() {
-        while(true){
-            setChanged();
-            notifyObservers();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+
     public Case[][] getState(){
 
         return grille.getTab();
@@ -167,9 +152,4 @@ public class Jeu extends Observable implements Runnable, Observer
         return grille.toString();
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        setChanged();
-        notifyObservers();
-    }
 }

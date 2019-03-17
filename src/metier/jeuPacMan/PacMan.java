@@ -33,19 +33,19 @@ public class PacMan extends Entite{
     //protected Grille grille;
     private Dir futureDirection;
 
-    public int getPacGommeMangé() {
+    int getPacGommeMangé() {
         return pacGommeMangé;
     }
 
-    public void setPacGommeMangé(int pacGommeMangé) {
+    void setPacGommeMangé(int pacGommeMangé) {
         this.pacGommeMangé = pacGommeMangé;
     }
 
-    public int getSuperPacGommeMangé() {
+    int getSuperPacGommeMangé() {
         return superPacGommeMangé;
     }
 
-    public void setSuperPacGommeMangé(int superPacGommeMangé) {
+    void setSuperPacGommeMangé(int superPacGommeMangé) {
         this.superPacGommeMangé = superPacGommeMangé;
     }
 
@@ -60,12 +60,15 @@ public class PacMan extends Entite{
 
     @Override
     public void run() {
+        int pheromonValue=0;
         while(true){
             //System.out.println("pac");
             if(futureDirection!=null){
                 if(caseOccupe.getVoisin(futureDirection)!=null) {
                     direction=futureDirection;
                 }
+                pheromonValue+=1;
+                caseOccupe.add(new Pherominus(pheromonValue));
                 caseOccupe.deplacer(this);
             }
 

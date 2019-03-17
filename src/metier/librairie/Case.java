@@ -1,12 +1,14 @@
 package metier.librairie;
 
 import javafx.scene.image.ImageView;
-import metier.jeuPacMan.*;
+import metier.jeuPacMan.PacGomme;
+import metier.jeuPacMan.SuperPacGomme;
 
 import java.util.ArrayList;
 import java.util.Observable;
 
 public class Case extends Observable {
+
     boolean isMur=false;
     ArrayList<Entite> entites =new ArrayList<>();
     ArrayList<Item> items=new ArrayList<>();
@@ -90,7 +92,6 @@ public class Case extends Observable {
     }
 
     public void aChangé(){
-
         setChanged();
         notifyObservers();
     }
