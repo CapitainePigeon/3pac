@@ -26,4 +26,8 @@ public class Disjktra extends IAFantominus {
         }
         return liste;
     }
+
+    public String getFileImg(){
+        return "fantominus_rosey.png";
+    }
 }

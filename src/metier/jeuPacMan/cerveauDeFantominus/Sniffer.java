@@ -10,4 +10,7 @@ public class Sniffer extends IAFantominus {
     public List<Case> getCases(Fantominus fantominus) {
         return null;
     }
+    public String getFileImg(){
+        return "fantominus_orange.png";
+    }
 }

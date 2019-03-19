@@ -12,4 +12,8 @@ public abstract class IAFantominus {
         grapheDesCouloir = graphDesCouloirs;
     }*/
     public abstract List<Case> getCases(Fantominus fantominus);
+
+    public String getFileImg(){
+        return "Error404lol";
+    }
 }
