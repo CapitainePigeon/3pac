@@ -61,6 +61,9 @@ public class Case extends Observable {
 
     }
 
+    public Case[] getVoisins(){
+        return casesVoisines;
+    }
     public Case getVoisin(Entite.Dir direction){
         switch (direction){
             case bas:
@@ -130,6 +133,10 @@ public class Case extends Observable {
             }
         }
         aChangé();
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
     }
 
     public void add(Item item){

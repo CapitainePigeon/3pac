@@ -107,6 +107,13 @@ public class Main extends Application {
         Fantominus fant2=new Fantominus(j.grille.getTab(11,13),dij);
         Fantominus fant3=new Fantominus(j.grille.getTab(11,14),dij);
         Fantominus fant4=new Fantominus(j.grille.getTab(11,15),dij);
+
+        new Thread(pacman).start();
+        try {
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         new Thread(fant1).start();
         new Thread(fant2).start();
         new Thread(fant3).start();
@@ -114,7 +121,7 @@ public class Main extends Application {
         //new Thread(fant5).start();
         //new Thread(fant).start();
         //new Thread(fant6).start();
-        new Thread(pacman).start();
+
     }
 
 

@@ -46,7 +46,7 @@ public class Fantominus extends Entite {
             }
             //System.out.println("cc");
             try {
-                Thread.sleep(300);
+                Thread.sleep(IA.sleeptime);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

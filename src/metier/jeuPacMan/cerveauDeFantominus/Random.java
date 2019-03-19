@@ -8,9 +8,11 @@ import org.jgrapht.graph.DefaultEdge;
 import java.util.List;
 
 public class Random extends IAFantominus {
+
     private DijkstraShortestPath<Case, DefaultEdge> dij;
     private GraphDesCouloirs grapheDesCouloir;
     public Random(GraphDesCouloirs graphDesCouloirs) {
+        super.sleeptime=250;
         //super(graphDesCouloirs);
         this.grapheDesCouloir=graphDesCouloirs;
         dij = new DijkstraShortestPath<>(grapheDesCouloir.graphe);
