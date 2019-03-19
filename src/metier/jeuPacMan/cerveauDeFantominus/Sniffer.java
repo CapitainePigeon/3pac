@@ -21,20 +21,24 @@ public class Sniffer extends IAFantominus {
         int maxvalue=-100;
         Case maxvoisin=fantominus.caseOccupe;
         for(Case voisin : fantominus.caseOccupe.getVoisins()) {
-            for (Item item : voisin.getItems()) {
-                if (item.getClass() == Pherominus.class) {
-                    sentir=true;
-                    if(((Pherominus) item).getValue()>maxvalue){
-                        maxvalue=((Pherominus) item).getValue();
-                        maxvoisin=voisin;
+            if(voisin!=null)
+                for (Item item : voisin.getItems()) {
+                    if (item.getClass() == Pherominus.class) {
+                        sentir=true;
+                        if(((Pherominus) item).getValue()>maxvalue){
+                            maxvalue=((Pherominus) item).getValue();
+                            maxvoisin=voisin;
+                        }
                     }
                 }
-            }
         }
         if(!sentir)
             return random.getCases(fantominus);
         ArrayList<Case> list= new ArrayList<>() ;
         list.add(maxvoisin);
         return list;
+    }
+    public String getFileImg(){
+        return "fantominus_orange.png";
     }
 }

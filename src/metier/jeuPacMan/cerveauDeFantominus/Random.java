@@ -27,4 +27,8 @@ public class Random extends IAFantominus {
         }
         return liste;
     }
+
+    public String getFileImg(){
+        return "fantominus_vert.png";
+    }
 }

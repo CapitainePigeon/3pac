@@ -22,7 +22,7 @@ public class Fantominus extends Entite {
     }
 
     public String getFileImg(){
-        return "fantominus_vert.png";
+        return this.IA.getFileImg();
     }
 
     private IAFantominus IA;
@@ -40,6 +40,7 @@ public class Fantominus extends Entite {
             if(mouvement.size()<2)
                 mouvement = IA.getCases(this);
 
+            if(mouvement.size()>0)
                 caseOccupe.deplacer(this, mouvement.get(0));
             if(mouvement.size()>1) {
                 mouvement.remove(0);

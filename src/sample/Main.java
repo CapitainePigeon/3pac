@@ -14,7 +14,7 @@ import metier.jeuPacMan.Fantominus;
 import metier.jeuPacMan.Jeu;
 import metier.jeuPacMan.PacMan;
 import metier.jeuPacMan.cerveauDeFantominus.GraphDesCouloirs;
-import metier.jeuPacMan.cerveauDeFantominus.Random;
+import metier.jeuPacMan.cerveauDeFantominus.Sniffer;
 import metier.librairie.Case;
 import metier.librairie.Entite;
 
@@ -61,18 +61,8 @@ public class Main extends Application {
             //((PacMan)o).getImgview().setImage(new Image("File:src/ressources/"+((Case)o).getFileImg(),20,20,false,false));
         });
 
-        //j.grille.getTab(23,13).add(pacman);
         GraphDesCouloirs graphDesCouloirs= new GraphDesCouloirs(j.grille);
-        Random dij =new Random(graphDesCouloirs);
-
-       // Fantominus fant=new Fantominus(j.grille.getTab(11,14),dij);
-
-        //j.grille.getTab(11,14).add(fant);
-
-
-
-
-
+        Sniffer rdm =new Sniffer(graphDesCouloirs);
 
         gPane.setGridLinesVisible(false);
 
@@ -103,17 +93,10 @@ public class Main extends Application {
                     }
                 });
 
-        Fantominus fant1=new Fantominus(j.grille.getTab(11,12),dij);
-        Fantominus fant2=new Fantominus(j.grille.getTab(11,13),dij);
-        Fantominus fant3=new Fantominus(j.grille.getTab(11,14),dij);
-        Fantominus fant4=new Fantominus(j.grille.getTab(11,15),dij);
-
-        new Thread(pacman).start();
-        try {
-            Thread.sleep(20000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Fantominus fant1=new Fantominus(j.grille.getTab(11,12),rdm);
+        Fantominus fant2=new Fantominus(j.grille.getTab(11,13),rdm);
+        Fantominus fant3=new Fantominus(j.grille.getTab(11,14),rdm);
+        Fantominus fant4=new Fantominus(j.grille.getTab(11,15),rdm);
         new Thread(fant1).start();
         new Thread(fant2).start();
         new Thread(fant3).start();
@@ -121,7 +104,7 @@ public class Main extends Application {
         //new Thread(fant5).start();
         //new Thread(fant).start();
         //new Thread(fant6).start();
-
+        new Thread(pacman).start();
     }
 
 

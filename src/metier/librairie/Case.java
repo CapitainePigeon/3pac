@@ -138,6 +138,9 @@ public class Case extends Observable {
     public ArrayList<Item> getItems() {
         return items;
     }
+    public boolean hasNoItem(){
+        return items.isEmpty();
+    }
 
     public void add(Item item){
         this.items.add(item);
