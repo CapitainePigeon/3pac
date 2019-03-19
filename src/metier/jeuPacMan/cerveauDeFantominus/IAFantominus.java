@@ -7,7 +7,7 @@ import java.util.List;
 
 public abstract class IAFantominus {
 
-
+    public float sleep;
     /*public IAFantominus(GraphDesCouloirs graphDesCouloirs) {
         grapheDesCouloir = graphDesCouloirs;
     }*/

@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -38,8 +39,13 @@ public class Main extends Application {
                 uneCase.setImgview(new ImageView());
                 gPane.add(uneCase.getImgview(), column++, row);
                 uneCase.addObserver((o, arg) -> {
-                    ((Case)o).getImgview().setImage(new Image("File:src/ressources/"+((Case)o).getFileImg(),
-                            20,20,false,false));
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((Case)o).getImgview().setImage(new Image("File:src/ressources/"+((Case)o).getFileImg(),
+                                    20,20,false,false));
+                        }
+                    });
                 });
                uneCase.aChangé();
             }
@@ -51,7 +57,7 @@ public class Main extends Application {
         PacMan pacman =new PacMan(j.grille.getTab(23,13));
         pacman.addObserver((o, arg) -> {
             System.out.println("wallah t mort");
-            System.exit(0);
+            //System.exit(0);
             //((PacMan)o).getImgview().setImage(new Image("File:src/ressources/"+((Case)o).getFileImg(),20,20,false,false));
         });
 
@@ -97,12 +103,10 @@ public class Main extends Application {
                     }
                 });
 
-        Fantominus fant1=new Fantominus(j.grille.getTab(11,14),dij);
-        Fantominus fant2=new Fantominus(j.grille.getTab(11,14),dij);
+        Fantominus fant1=new Fantominus(j.grille.getTab(11,12),dij);
+        Fantominus fant2=new Fantominus(j.grille.getTab(11,13),dij);
         Fantominus fant3=new Fantominus(j.grille.getTab(11,14),dij);
-        Fantominus fant4=new Fantominus(j.grille.getTab(11,14),dij);
-        Fantominus fant5=new Fantominus(j.grille.getTab(11,14),dij);
-        Fantominus fant6=new Fantominus(j.grille.getTab(11,14),dij);
+        Fantominus fant4=new Fantominus(j.grille.getTab(11,15),dij);
         new Thread(fant1).start();
         new Thread(fant2).start();
         new Thread(fant3).start();
