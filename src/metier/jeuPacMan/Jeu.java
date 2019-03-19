@@ -122,6 +122,8 @@ public class Jeu
         setPacGomme(21,15);
         setPacGomme(22,26);
         setPacGomme(21,26);
+        setPacGomme(20,9);
+        setPacGomme(20,18);
 
         setSuperPacGomme(3,1);
         setSuperPacGomme(3,26);

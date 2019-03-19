@@ -61,18 +61,8 @@ public class Main extends Application {
             //((PacMan)o).getImgview().setImage(new Image("File:src/ressources/"+((Case)o).getFileImg(),20,20,false,false));
         });
 
-        //j.grille.getTab(23,13).add(pacman);
         GraphDesCouloirs graphDesCouloirs= new GraphDesCouloirs(j.grille);
-        Random dij =new Random(graphDesCouloirs);
-
-       // Fantominus fant=new Fantominus(j.grille.getTab(11,14),dij);
-
-        //j.grille.getTab(11,14).add(fant);
-
-
-
-
-
+        Random rdm =new Random(graphDesCouloirs);
 
         gPane.setGridLinesVisible(false);
 
@@ -103,10 +93,10 @@ public class Main extends Application {
                     }
                 });
 
-        Fantominus fant1=new Fantominus(j.grille.getTab(11,12),dij);
-        Fantominus fant2=new Fantominus(j.grille.getTab(11,13),dij);
-        Fantominus fant3=new Fantominus(j.grille.getTab(11,14),dij);
-        Fantominus fant4=new Fantominus(j.grille.getTab(11,15),dij);
+        Fantominus fant1=new Fantominus(j.grille.getTab(11,12),rdm);
+        Fantominus fant2=new Fantominus(j.grille.getTab(11,13),rdm);
+        Fantominus fant3=new Fantominus(j.grille.getTab(11,14),rdm);
+        Fantominus fant4=new Fantominus(j.grille.getTab(11,15),rdm);
         new Thread(fant1).start();
         new Thread(fant2).start();
         new Thread(fant3).start();
