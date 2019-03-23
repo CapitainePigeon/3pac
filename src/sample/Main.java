@@ -9,6 +9,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import metier.jeuPacMan.Fantominus;
 import metier.jeuPacMan.Jeu;
@@ -18,10 +20,15 @@ import metier.jeuPacMan.cerveauDeFantominus.Sniffer;
 import metier.librairie.Case;
 import metier.librairie.Entite;
 
+import java.awt.*;
+
 public class Main extends Application {
+
+    boolean gameOver = false;
 
     @Override
     public void start(Stage primaryStage){
+
         Jeu j=new Jeu();
 
         BorderPane border = new BorderPane();
@@ -57,6 +64,14 @@ public class Main extends Application {
         PacMan pacman =new PacMan(j.grille.getTab(23,13));
         pacman.addObserver((o, arg) -> {
             System.out.println("wallah t mort");
+            //primaryStage.close();
+            gameOver=true;
+            /*
+            Stage popupGO = new Stage();
+            Main go = new Main();
+            go.start(popupGO);
+            popupGO.show();
+            */
             //System.exit(0);
             //((PacMan)o).getImgview().setImage(new Image("File:src/ressources/"+((Case)o).getFileImg(),20,20,false,false));
         });
@@ -66,10 +81,21 @@ public class Main extends Application {
 
         gPane.setGridLinesVisible(false);
 
+        StackPane voletScore = new StackPane();
+        Label labelScore = new Label("");
+        int scorePM = pacman.getPacGommeMangé()+10*pacman.getSuperPacGommeMangé();
+        System.out.println(scorePM);
+        labelScore.setText("Score = "+scorePM);
+        voletScore.getChildren().add(labelScore);
+
+        border.setRight(voletScore);
+
+
+
         border.setCenter(gPane);
 
-        primaryStage.setTitle("3Pac");
-        primaryStage.setScene(new Scene(border, 28*20, 31*20));
+        primaryStage.setTitle("3PAC");
+        primaryStage.setScene(new Scene(border, (28*20)+200, 31*20));
         primaryStage.show();
         primaryStage.getScene().setOnKeyPressed(
                 new EventHandler<KeyEvent>()
@@ -92,19 +118,32 @@ public class Main extends Application {
                         }
                     }
                 });
+        //primaryStage.setOnCloseRequest(event -> );
 
         Fantominus fant1=new Fantominus(j.grille.getTab(11,12),rdm);
         Fantominus fant2=new Fantominus(j.grille.getTab(11,13),rdm);
         Fantominus fant3=new Fantominus(j.grille.getTab(11,14),rdm);
         Fantominus fant4=new Fantominus(j.grille.getTab(11,15),rdm);
-        new Thread(fant1).start();
-        new Thread(fant2).start();
-        new Thread(fant3).start();
-        new Thread(fant4).start();
+        Thread f1 = new Thread(fant1);
+        f1.start();
+        Thread f2 = new Thread(fant2);
+        f2.start();
+        Thread f3 = new Thread(fant3);
+        f3.start();
+        Thread f4 = new Thread(fant4);
+        f4.start();
         //new Thread(fant5).start();
         //new Thread(fant).start();
         //new Thread(fant6).start();
-        new Thread(pacman).start();
+        Thread p = new Thread(pacman);
+        p.start();
+
+        if(gameOver){
+            f1.interrupt();
+            f2.interrupt();
+            f3.interrupt();
+            f4.interrupt();
+        }
     }
 
 

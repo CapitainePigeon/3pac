@@ -33,7 +33,7 @@ public class PacMan extends Entite{
     //protected Grille grille;
     private Dir futureDirection;
 
-    int getPacGommeMangé() {
+    public int getPacGommeMangé() {
         return pacGommeMangé;
     }
 
@@ -41,7 +41,7 @@ public class PacMan extends Entite{
         this.pacGommeMangé = pacGommeMangé;
     }
 
-    int getSuperPacGommeMangé() {
+    public int getSuperPacGommeMangé() {
         return superPacGommeMangé;
     }
 
