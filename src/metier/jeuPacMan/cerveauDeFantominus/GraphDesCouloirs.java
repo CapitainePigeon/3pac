@@ -11,6 +11,7 @@ import static metier.librairie.Entite.Dir.*;
 public class GraphDesCouloirs {
     //private DijkstraShortestPath a= new DijkstraShortestPath ();
     public SimpleGraph <Case, DefaultEdge>graphe;
+
     public GraphDesCouloirs(Grille grille) {
         graphe=new SimpleGraph<>(DefaultEdge.class);
         for(int ligne = 1; ligne < grille.getTab().length-1; ligne++) {
