@@ -12,10 +12,16 @@ import javafx.stage.Stage;
 
 public class Menu  extends Application{
 
+    boolean jeuEnCours=false;
+
     @Override
     public void start(Stage primaryStage) {
-        Label label = new Label("Bienvenue sur 3pac, le pacman des bg");
 
+
+        Label labelEnCours = new Label("Jeu en cours...");
+        labelEnCours.setTranslateY(135);
+        labelEnCours.setVisible(false);
+        Label label = new Label("Bienvenue sur 3pac, le pacman des bg");
         Button play = new Button();
         play.setText("Jouer");
         play.setTranslateY(100);
@@ -23,13 +29,23 @@ public class Menu  extends Application{
 
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
+                if(!jeuEnCours) {
+                    System.out.println("Play Pacman");
+                    labelEnCours.setVisible(true);
+                    Stage leJeuStage = new Stage();
+                    Main leJeu = new Main();
+                    leJeu.start(leJeuStage);
+                    leJeuStage.show();
+                    jeuEnCours=true;
+                }
+                else
+                    System.out.println("Pacman already playing");
             }
         });
 
         Button quit = new Button();
         quit.setText("Quitter");
-        quit.setTranslateY(150);
+        quit.setTranslateY(175);
         quit.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -45,6 +61,7 @@ public class Menu  extends Application{
         StackPane root = new StackPane();
         root.getChildren().add(tripac);
         root.getChildren().add(label);
+        root.getChildren().add(labelEnCours);
         root.getChildren().add(play);
         root.getChildren().add(quit);
 

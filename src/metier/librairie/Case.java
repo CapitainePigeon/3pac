@@ -128,9 +128,7 @@ public class Case extends Observable {
             }
         }
         for(Item item :itemsASupprimer){
-            if(item.utiliser(entite)){
-                items.remove(item);
-            }
+            items.remove(item);
         }
         aChangé();
     }
