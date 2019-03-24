@@ -25,7 +25,7 @@ public class Case extends Observable {
         remove(entite);
     }
 
-    public synchronized void deplacer(Entite entite){
+    public void deplacer(Entite entite){
         if(!entites.contains(entite) || entite.direction==null)
             return ;
         switch (entite.direction) {
@@ -128,9 +128,7 @@ public class Case extends Observable {
             }
         }
         for(Item item :itemsASupprimer){
-            if(item.utiliser(entite)){
-                items.remove(item);
-            }
+            items.remove(item);
         }
         aChangé();
     }

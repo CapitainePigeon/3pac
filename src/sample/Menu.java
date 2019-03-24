@@ -1,5 +1,6 @@
 package sample;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -9,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class Menu  extends Application{
 
@@ -36,12 +38,23 @@ public class Menu  extends Application{
                     Main leJeu = new Main();
                     leJeu.start(leJeuStage);
                     leJeuStage.show();
-                    jeuEnCours=true;
+                    jeuEnCours = true;
+
+                    leJeuStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                        @Override
+                        public void handle(WindowEvent e) {
+                            jeuEnCours=false;
+                            System.out.println("Pacman closed");
+                            labelEnCours.setVisible(false);
+                        }
+                    });
                 }
                 else
                     System.out.println("Pacman already playing");
             }
         });
+
+
 
         Button quit = new Button();
         quit.setText("Quitter");
@@ -50,6 +63,7 @@ public class Menu  extends Application{
 
             @Override
             public void handle(ActionEvent event) {
+                Platform.exit();
                 System.exit(0);
             }
         });
@@ -67,7 +81,7 @@ public class Menu  extends Application{
 
         Scene scene = new Scene(root, 350, 500);
 
-        primaryStage.setTitle("3PAC - Accueil");
+        primaryStage.setTitle("3PAC - Menu");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

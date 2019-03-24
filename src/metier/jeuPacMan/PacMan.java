@@ -4,6 +4,7 @@ import metier.librairie.Case;
 import metier.librairie.Entite;
 
 public class PacMan extends Entite{
+
     public String toString(){
         return "O";
     }
@@ -39,6 +40,8 @@ public class PacMan extends Entite{
 
     void setPacGommeMangé(int pacGommeMangé) {
         this.pacGommeMangé = pacGommeMangé;
+        setChanged();
+        notifyObservers();
     }
 
     public int getSuperPacGommeMangé() {
@@ -61,7 +64,7 @@ public class PacMan extends Entite{
     @Override
     public void run() {
         int pheromonValue=0;
-        while(true){
+        while(!dead){
             //System.out.println("pac");
             if(futureDirection!=null){
                 if(caseOccupe.getVoisin(futureDirection)!=null) {
@@ -95,9 +98,13 @@ public class PacMan extends Entite{
     }
 
     public void kill() {
+        dead=true;
         setChanged();
         notifyObservers();
-        System.out.println("t mor");
+        //System.out.println("t mor");
+    }
+    public boolean isDead(){
+        return  dead;
     }
 
 }

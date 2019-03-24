@@ -36,7 +36,7 @@ public class Fantominus extends Entite {
     @Override
     public void run() {
         List<Case> mouvement=IA.getCases(this);
-        while(true){
+        while(!dead){
             if(mouvement.size()<2)
                 mouvement = IA.getCases(this);
 
@@ -53,4 +53,5 @@ public class Fantominus extends Entite {
             }
         }
     }
+
 }

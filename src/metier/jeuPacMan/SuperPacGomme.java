@@ -16,6 +16,7 @@ public class SuperPacGomme extends Item {
     public boolean utiliser(Entite entite) {
         if(entite.getClass().equals(PacMan.class)){
             ((PacMan)entite).setSuperPacGommeMangé(((PacMan)entite).getSuperPacGommeMangé()+1);
+            System.out.println(((PacMan)entite).getSuperPacGommeMangé());
             return true;
         }
         return false;

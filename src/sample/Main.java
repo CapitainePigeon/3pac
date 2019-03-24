@@ -4,13 +4,13 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import metier.jeuPacMan.Fantominus;
@@ -21,7 +21,8 @@ import metier.jeuPacMan.cerveauDeFantominus.Sniffer;
 import metier.librairie.Case;
 import metier.librairie.Entite;
 
-import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
 public class Main extends Application {
 
@@ -63,19 +64,7 @@ public class Main extends Application {
 
 
         PacMan pacman =new PacMan(j.grille.getTab(23,13));
-        pacman.addObserver((o, arg) -> {
-            System.out.println("wallah t mort");
-            //primaryStage.close();
-            gameOver=true;
-            /*
-            Stage popupGO = new Stage();
-            Main go = new Main();
-            go.start(popupGO);
-            popupGO.show();
-            */
-            //System.exit(0);
-            //((PacMan)o).getImgview().setImage(new Image("File:src/ressources/"+((Case)o).getFileImg(),20,20,false,false));
-        });
+
 
         GraphDesCouloirs graphDesCouloirs= new GraphDesCouloirs(j.grille);
         Sniffer rdm =new Sniffer(graphDesCouloirs);
@@ -89,12 +78,24 @@ public class Main extends Application {
         voletScore.getChildren().add(bgScore);
 
         Label labelScore = new Label("");
-        int scorePM = pacman.getPacGommeMangé()+10*pacman.getSuperPacGommeMangé();
+        int scorePM = 0;
+        pacman.addObserver(new Observer() {
+            @Override
+            public void update(Observable o, Object arg) {
+                int scorePM=10*pacman.getSuperPacGommeMangé()+pacman.getPacGommeMangé();
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        labelScore.setText(String.valueOf(scorePM));
+                    }
+                });
+            }
+        });
         System.out.println(scorePM);
-        labelScore.setText(String.valueOf(scorePM));
         labelScore.setTextFill(Color.web("#ff0000"));
         labelScore.setScaleX(4);
         labelScore.setScaleY(4);
+        labelScore.setText(String.valueOf(scorePM));
         voletScore.getChildren().add(labelScore);
 
         border.setRight(voletScore);
@@ -138,18 +139,26 @@ public class Main extends Application {
         f3.start();
         Thread f4 = new Thread(fant4);
         f4.start();
-        //new Thread(fant5).start();
-        //new Thread(fant).start();
-        //new Thread(fant6).start();
         Thread p = new Thread(pacman);
         p.start();
+        pacman.addObserver((o, arg) -> {
+            if(pacman.isDead()) {
+                System.out.println("t mort");
 
-        if(gameOver){
-            f1.interrupt();
-            f2.interrupt();
-            f3.interrupt();
-            f4.interrupt();
-        }
+                fant1.kill();
+                fant2.kill();
+                fant3.kill();
+                fant4.kill();
+
+            /*
+            Stage popupGO = new Stage();
+            Main go = new Main();
+            go.start(popupGO);
+            popupGO.show();
+            */
+            }
+        });
+
     }
 
 

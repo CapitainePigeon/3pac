@@ -147,7 +147,6 @@ public class Jeu
     }
 
     public Case[][] getState(){
-
         return grille.getTab();
     }
     public String toString(){
