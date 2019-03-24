@@ -150,12 +150,17 @@ public class Main extends Application {
                 fant3.kill();
                 fant4.kill();
 
-            /*
-            Stage popupGO = new Stage();
-            Main go = new Main();
-            go.start(popupGO);
-            popupGO.show();
-            */
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    Stage popupGO = new Stage();
+                    Main go = new Main();
+                    go.start(popupGO);
+                    popupGO.show();
+                }
+            });
+
+
             }
         });
 
