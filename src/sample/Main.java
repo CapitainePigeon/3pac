@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import metier.jeuPacMan.Fantominus;
 import metier.jeuPacMan.Jeu;
@@ -82,16 +83,21 @@ public class Main extends Application {
         gPane.setGridLinesVisible(false);
 
         StackPane voletScore = new StackPane();
+
+        Image bgScoreImg = new Image("File:src/ressources/score.png", 200, 620, false,false);
+        ImageView bgScore = new ImageView(bgScoreImg);
+        voletScore.getChildren().add(bgScore);
+
         Label labelScore = new Label("");
         int scorePM = pacman.getPacGommeMangé()+10*pacman.getSuperPacGommeMangé();
         System.out.println(scorePM);
-        labelScore.setText("Score = "+scorePM);
+        labelScore.setText(String.valueOf(scorePM));
+        labelScore.setTextFill(Color.web("#ff0000"));
+        labelScore.setScaleX(4);
+        labelScore.setScaleY(4);
         voletScore.getChildren().add(labelScore);
 
         border.setRight(voletScore);
-
-
-
         border.setCenter(gPane);
 
         primaryStage.setTitle("3PAC");
