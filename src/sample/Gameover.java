@@ -20,7 +20,7 @@ public class Gameover  extends Application{
 
         Button quit = new Button();
         quit.setText("Quitter");
-        quit.setTranslateY(175);
+        quit.setTranslateY(35);
         quit.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -33,7 +33,7 @@ public class Gameover  extends Application{
         root.getChildren().add(label);
         root.getChildren().add(quit);
 
-        Scene scene = new Scene(root, 350, 500);
+        Scene scene = new Scene(root, 375, 150);
 
         primaryStage.setTitle("3PAC - Fin de partie");
         primaryStage.setScene(scene);

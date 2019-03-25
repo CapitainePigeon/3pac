@@ -13,6 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import metier.jeuPacMan.Fantominus;
 import metier.jeuPacMan.Jeu;
 import metier.jeuPacMan.PacMan;
@@ -25,9 +26,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class Main extends Application {
-
-    boolean gameOver = false;
-
+    
     @Override
     public void start(Stage primaryStage){
 
@@ -125,7 +124,6 @@ public class Main extends Application {
                         }
                     }
                 });
-        //primaryStage.setOnCloseRequest(event -> );
 
         Fantominus fant1=new Fantominus(j.grille.getTab(11,12),rdm);
         Fantominus fant2=new Fantominus(j.grille.getTab(11,13),rdm);
@@ -144,7 +142,6 @@ public class Main extends Application {
         pacman.addObserver((o, arg) -> {
             if(pacman.isDead()) {
                 System.out.println("t mort");
-
                 fant1.kill();
                 fant2.kill();
                 fant3.kill();
@@ -154,9 +151,15 @@ public class Main extends Application {
                 @Override
                 public void run() {
                     Stage popupGO = new Stage();
-                    Main go = new Main();
+                    Gameover go = new Gameover();
                     go.start(popupGO);
                     popupGO.show();
+                    popupGO.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                        @Override
+                        public void handle(WindowEvent e) {
+                            primaryStage.close();
+                        }
+                    });
                 }
             });
 
