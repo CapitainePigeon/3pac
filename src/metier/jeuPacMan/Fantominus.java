@@ -33,6 +33,14 @@ public class Fantominus extends Entite {
 
     }
 
+    public IAFantominus getIA() {
+        return IA;
+    }
+
+    public void setIA(IAFantominus IA) {
+        this.IA = IA;
+    }
+
     @Override
     public void run() {
         List<Case> mouvement=IA.getCases(this);

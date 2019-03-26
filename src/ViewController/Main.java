@@ -1,26 +1,19 @@
-package sample;
+package ViewController;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import metier.jeuPacMan.Fantominus;
 import metier.jeuPacMan.Jeu;
 import metier.jeuPacMan.PacMan;
-import metier.jeuPacMan.cerveauDeFantominus.GraphDesCouloirs;
-import metier.jeuPacMan.cerveauDeFantominus.Sniffer;
 import metier.librairie.Case;
-import metier.librairie.Entite;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -65,8 +58,7 @@ public class Main extends Application {
         PacMan pacman =new PacMan(j.grille.getTab(23,13));
 
 
-        GraphDesCouloirs graphDesCouloirs= new GraphDesCouloirs(j.grille);
-        Sniffer rdm =new Sniffer(graphDesCouloirs);
+
 
         gPane.setGridLinesVisible(false);
 
@@ -103,69 +95,8 @@ public class Main extends Application {
         primaryStage.setTitle("3PAC");
         primaryStage.setScene(new Scene(border, (28*20)+200, 31*20));
         primaryStage.show();
-        primaryStage.getScene().setOnKeyPressed(
-                new EventHandler<KeyEvent>()
-                {
-                    @Override
-                    public void handle(KeyEvent event) {
-                        switch (event.getCode()) {
-                            case UP:
-                                pacman.changeDir(Entite.Dir.haut);
-                                break;
-                            case DOWN:
-                                pacman.changeDir(Entite.Dir.bas);
-                                break;
-                            case LEFT:
-                                pacman.changeDir(Entite.Dir.gauche);
-                                break;
-                            case RIGHT:
-                                pacman.changeDir(Entite.Dir.droite);
-                                break;
-                        }
-                    }
-                });
 
-        Fantominus fant1=new Fantominus(j.grille.getTab(11,12),rdm);
-        Fantominus fant2=new Fantominus(j.grille.getTab(11,13),rdm);
-        Fantominus fant3=new Fantominus(j.grille.getTab(11,14),rdm);
-        Fantominus fant4=new Fantominus(j.grille.getTab(11,15),rdm);
-        Thread f1 = new Thread(fant1);
-        f1.start();
-        Thread f2 = new Thread(fant2);
-        f2.start();
-        Thread f3 = new Thread(fant3);
-        f3.start();
-        Thread f4 = new Thread(fant4);
-        f4.start();
-        Thread p = new Thread(pacman);
-        p.start();
-        pacman.addObserver((o, arg) -> {
-            if(pacman.isDead()) {
-                System.out.println("t mort");
-                fant1.kill();
-                fant2.kill();
-                fant3.kill();
-                fant4.kill();
-
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    Stage popupGO = new Stage();
-                    Gameover go = new Gameover();
-                    go.start(popupGO);
-                    popupGO.show();
-                    popupGO.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                        @Override
-                        public void handle(WindowEvent e) {
-                            primaryStage.close();
-                        }
-                    });
-                }
-            });
-
-
-            }
-        });
+        new ControllerPacman(primaryStage,j,pacman);
 
     }
 

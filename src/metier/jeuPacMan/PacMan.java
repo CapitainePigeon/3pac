@@ -1,5 +1,6 @@
 package metier.jeuPacMan;
 
+import metier.jeuPacMan.cerveauDeFantominus.Fuite;
 import metier.librairie.Case;
 import metier.librairie.Entite;
 
@@ -49,7 +50,11 @@ public class PacMan extends Entite{
     }
 
     void setSuperPacGommeMangé(int superPacGommeMangé) {
+
         this.superPacGommeMangé = superPacGommeMangé;
+        Immortel=true;
+        setChanged();
+        notifyObservers();
     }
 
     private int pacGommeMangé=0;
@@ -83,9 +88,18 @@ public class PacMan extends Entite{
         }
     }
 
+    boolean Immortel;
+    public void seCalmer(){
+        Immortel=false;
+    }
+    public boolean isImmortel(){
+        return Immortel;
+    }
     @Override
     public boolean interagir(Entite entite) {
-        if(entite.getClass().equals(Fantominus.class)){
+        if(entite.getClass().equals(Fantominus.class) &&
+                ((Fantominus)entite).getIA().getClass().equals(Fuite.class) ){
+            System.out.println(((Fantominus)entite).getIA().getClass());
             this.kill();
             return true;
         }

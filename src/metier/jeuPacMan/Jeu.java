@@ -7,8 +7,8 @@ import metier.librairie.Grille;
 public class Jeu
 {
     public Grille grille;
-    public Jeu() {
 
+    public Jeu() {
         grille =new Grille(31,28);
         for(int i=0;i<grille.getTab().length;i++){
             for(int k=0;k<grille.getTab()[i].length;k++){

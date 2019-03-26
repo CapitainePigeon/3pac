@@ -1,4 +1,4 @@
-package sample;
+package ViewController;
 
 import metier.jeuPacMan.Jeu;
 import metier.librairie.Case;
