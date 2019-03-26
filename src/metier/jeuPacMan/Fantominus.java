@@ -1,6 +1,7 @@
 package metier.jeuPacMan;
 
 
+import metier.jeuPacMan.cerveauDeFantominus.Fuite;
 import metier.jeuPacMan.cerveauDeFantominus.IAFantominus;
 import metier.librairie.Case;
 import metier.librairie.Entite;
@@ -10,7 +11,8 @@ import java.util.List;
 public class Fantominus extends Entite {
     @Override
     public boolean interagir(Entite entite) {
-        if(entite.getClass().equals(PacMan.class)){
+        if(entite.getClass().equals(PacMan.class)&&
+                !(getIA().getClass().equals(Fuite.class))){
             ((PacMan)entite).kill();
             return true;
         }

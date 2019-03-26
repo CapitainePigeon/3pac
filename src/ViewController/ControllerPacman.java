@@ -43,7 +43,7 @@ public class ControllerPacman {
                     @Override
                     public void run() {
                         try {
-                            Thread.sleep(15000);
+                            Thread.sleep(5000);
                             fant1.setIA(rdm);
                             fant2.setIA(sniffer);
                             fant3.setIA(fastRdm);

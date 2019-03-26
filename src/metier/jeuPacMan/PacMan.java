@@ -98,8 +98,8 @@ public class PacMan extends Entite{
     @Override
     public boolean interagir(Entite entite) {
         if(entite.getClass().equals(Fantominus.class) &&
-                ((Fantominus)entite).getIA().getClass().equals(Fuite.class) ){
-            System.out.println(((Fantominus)entite).getIA().getClass());
+                !((Fantominus)entite).getIA().getClass().equals(Fuite.class) ){
+
             this.kill();
             return true;
         }
